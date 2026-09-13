@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <title>体調記録</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>体調記録</h1>
+    <p class="app-sub">今日の調子を5項目で記録します。データはこのブラウザ内にだけ保存されます。</p>
+  </header>
+
+  <main class="layout">
+    <!-- 入力フォーム -->
+    <section class="card" aria-labelledby="form-title">
+      <div class="card-head">
+        <h2 id="form-title">今日の記録</h2>
+        <span id="edit-badge" class="badge" hidden>編集中</span>
+      </div>
+
+      <form id="entry-form" novalidate>
+        <div class="field">
+          <label for="date">日付</label>
+          <div class="date-row">
+            <input type="date" id="date" name="date" required>
+            <button type="button" class="btn btn-ghost btn-sm" id="today-btn">今日</button>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label for="condition">体調</label>
+            <select id="condition" name="condition" required></select>
+          </div>
+          <div class="field">
+            <label for="mental">メンタルの安定度</label>
+            <select id="mental" name="mental" required></select>
+          </div>
+          <div class="field">
+            <label for="appetite">食欲</label>
+            <select id="appetite" name="appetite" required></select>
+          </div>
+          <div class="field">
+            <label for="motivation">意欲</label>
+            <select id="motivation" name="motivation" required></select>
+          </div>
+          <div class="field">
+            <label for="sleep-hours">睡眠時間</label>
+            <div class="unit-input">
+              <input type="number" id="sleep-hours" name="sleepHours" inputmode="decimal" min="0" max="24" step="0.5" placeholder="例: 7" required>
+              <span class="unit">時間</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="sleep-quality">睡眠の質</label>
+            <select id="sleep-quality" name="sleepQuality" required></select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="memo">メモ <span class="optional">(任意)</span></label>
+          <textarea id="memo" name="memo" rows="2" maxlength="500" placeholder="気になったことがあれば一言"></textarea>
+        </div>
+
+        <p id="form-error" class="form-error" role="alert" hidden></p>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary" id="save-btn">保存する</button>
+          <button type="button" class="btn btn-ghost" id="clear-btn">入力をクリア</button>
+        </div>
+        <p id="save-msg" class="save-msg" aria-live="polite"></p>
+      </form>
+    </section>
+
+    <!-- 記録一覧 -->
+    <section class="card" aria-labelledby="list-title">
+      <div class="card-head">
+        <h2 id="list-title">記録一覧 <span id="count" class="count"></span></h2>
+        <div class="head-actions">
+          <button type="button" class="btn btn-ghost btn-sm" id="export-btn">Excelで書き出し</button>
+        </div>
+      </div>
+
+      <p id="empty-msg" class="empty">まだ記録がありません。フォームから今日の記録を保存しましょう。</p>
+
+      <div class="table-wrap">
+        <table id="entries-table" hidden>
+          <thead>
+            <tr>
+              <th>日付</th>
+              <th>体調</th>
+              <th>メンタル</th>
+              <th>食欲</th>
+              <th>意欲</th>
+              <th>睡眠</th>
+              <th class="th-ops"><span class="sr-only">操作</span></th>
+            </tr>
+          </thead>
+          <tbody id="entries-body"></tbody>
+        </table>
+      </div>
+
+      <details class="danger-zone">
+        <summary>データ管理</summary>
+        <p>すべての記録をこのブラウザから削除します。書き出したExcelファイルには影響しません。</p>
+        <button type="button" class="btn btn-danger btn-sm" id="delete-all-btn">すべて削除</button>
+      </details>
+    </section>
+  </main>
+
+  <script src="xlsx.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
