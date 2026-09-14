@@ -69,6 +69,50 @@ body {
   font-size: 0.9rem;
 }
 
+.header-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 10px 0 0;
+  font-size: 0.9rem;
+}
+
+.today-status.is-done {
+  color: var(--accent-strong);
+  font-weight: 600;
+}
+
+.today-status.is-pending {
+  color: var(--level-2);
+  font-weight: 600;
+}
+
+.streak-info {
+  color: var(--muted);
+}
+
+.app-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  max-width: min(520px, calc(100vw - 32px));
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  color: var(--accent-strong);
+  font-size: 0.9rem;
+  z-index: 100;
+}
+
+.app-toast.is-error {
+  color: var(--danger);
+  border-color: var(--danger);
+  background: var(--danger-soft);
+}
+
 .layout {
   max-width: 1100px;
   margin: 0 auto;
@@ -244,11 +288,40 @@ textarea:focus {
   margin-top: 6px;
 }
 
-.save-msg {
-  margin: 10px 0 0;
-  min-height: 1.4em;
-  color: var(--accent-strong);
-  font-size: 0.9rem;
+.month-filter-label {
+  display: flex;
+  align-items: center;
+}
+
+.month-filter {
+  min-height: 34px;
+  padding: 6px 10px;
+  font-size: 0.85rem;
+  width: auto;
+  min-width: 9rem;
+}
+
+.trends-wrap {
+  margin-bottom: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+}
+
+.trends-caption {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.trends-chart {
+  display: block;
+}
+
+.trend-grid {
+  stroke: var(--line);
+  stroke-width: 1;
 }
 
 /* ---------- ボタン ---------- */

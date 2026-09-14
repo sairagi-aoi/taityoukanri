@@ -11,7 +11,13 @@
   <header class="app-header">
     <h1>体調記録</h1>
     <p class="app-sub">今日の調子を5項目で記録します。データはこのブラウザ内にだけ保存されます。</p>
+    <p class="header-meta">
+      <span id="today-status" class="today-status is-pending">今日: 未記録</span>
+      <span id="streak-info" class="streak-info">連続記録なし</span>
+    </p>
   </header>
+
+  <div id="app-toast" class="app-toast" role="status" aria-live="polite" hidden></div>
 
   <main class="layout">
     <!-- 入力フォーム -->
@@ -71,7 +77,6 @@
           <button type="submit" class="btn btn-primary" id="save-btn">保存する</button>
           <button type="button" class="btn btn-ghost" id="clear-btn">入力をクリア</button>
         </div>
-        <p id="save-msg" class="save-msg" aria-live="polite"></p>
       </form>
     </section>
 
@@ -80,8 +85,17 @@
       <div class="card-head">
         <h2 id="list-title">記録一覧 <span id="count" class="count"></span></h2>
         <div class="head-actions">
+          <label class="month-filter-label">
+            <span class="sr-only">表示する月</span>
+            <select id="month-filter" class="month-filter" aria-label="表示する月"></select>
+          </label>
           <button type="button" class="btn btn-ghost btn-sm" id="export-btn">Excelで書き出し</button>
         </div>
+      </div>
+
+      <div id="trends-wrap" class="trends-wrap" hidden>
+        <p class="trends-caption">直近14日の推移 (体調・メンタル)</p>
+        <svg id="trends-chart" class="trends-chart" viewBox="0 0 320 120" width="100%" height="120" aria-hidden="true"></svg>
       </div>
 
       <p id="empty-msg" class="empty">まだ記録がありません。フォームから今日の記録を保存しましょう。</p>

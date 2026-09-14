@@ -126,6 +126,7 @@
   // ---------- XML ----------
   function esc(s) {
     return String(s)
+      .replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g, "")
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
@@ -157,6 +158,7 @@
   }
 
   function sheetXml(rows, colWidths) {
+    if (!rows.length) rows = [[""]];
     const rowXml = rows
       .map((row, r) => {
         const cells = row
@@ -172,7 +174,8 @@
           .join("")}</cols>`
       : "";
 
-    const lastCol = colName(Math.max(0, ...rows.map((r) => r.length)) - 1 || 0);
+    const maxLen = Math.max(1, ...rows.map((r) => r.length));
+    const lastCol = colName(Math.max(0, maxLen - 1));
     const dim = `A1:${lastCol}${Math.max(1, rows.length)}`;
 
     return (
