@@ -29,3 +29,11 @@ HTML / CSS / JavaScript だけで動く、その日の体調を記録する小�
 | `style.css`  | スタイル (ダークモード対応)                     |
 | `app.js`     | 入力・保存・一覧表示                            |
 | `xlsx.js`    | 外部ライブラリなしで `.xlsx` を生成する自作処理 |
+
+## 学習教材
+
+このアプリのコードを題材にした、JavaScript 初学者向けの学習教材を
+[`docs/js-beginner/`](docs/js-beginner/) に置いています。
+全15章 + 付録で、変数・関数・DOM 操作・イベント・localStorage・エラー処理までを
+実際に動いているコードを読みながら学べます。まずは
+[`docs/js-beginner/README.md`](docs/js-beginner/README.md) からどうぞ。
