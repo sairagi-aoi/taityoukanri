@@ -249,7 +249,7 @@ function renderList() {
 差分更新のほうが速いですが、コードが複雑になりバグの温床になります。
 このアプリは数千件が上限なので、全部作り直しても一瞬です。**シンプルさを優先した判断** です。
 
-> `xlsx.js` にはもう1つの消し方も出てきます。
+> `app.js` のグラフ描画には、もう1つの消し方が出てきます。
 > ```js
 > while (trendsSvg.firstChild) trendsSvg.removeChild(trendsSvg.firstChild);
 > ```
